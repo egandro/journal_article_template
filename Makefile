@@ -3,7 +3,7 @@ PDF = $(TEX:.tex=.pdf)
 DOCX = $(TEX:.tex=.docx)
 MARKDOWN = $(TEX:.tex=.md)
 
-.PHONY: all clean export export-md export-docx
+.PHONY: all clean export export-md export-docx format
 
 all: $(PDF)
 
@@ -27,3 +27,7 @@ export: export-md export-docx
 
 clean:
 	rm -f *.aux *.log *.out *.toc *.bbl *.fls *.blg *.synctex.gz *.bcf *.run.xml *.fdb_latexmk  $(PDF) $(DOCX) $(MARKDOWN)
+
+# Format all LaTeX source files with tex-fmt
+format:
+	tex-fmt --config .tex-fmt.toml *.tex
